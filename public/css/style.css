@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Arial", sans-serif;
+  padding: 0;
+}
+.custom-sidebar-width {
+  width: 15%;
+}
+.group:hover .text-gray-300 {
+  color: white;
+}
+#clock {
+  font-size: 3rem;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  animation: fadeIn ease-in-out 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.day-cell {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.day-cell:hover {
+  background-color: #8492dc;
+}
+.today {
+  background-color: rgb(32, 76, 158);
+  border-radius: 50%;
+  color: white;
+}

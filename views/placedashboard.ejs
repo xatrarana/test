@@ -1,0 +1,153 @@
+<div class="p-3">
+  <!-- Title -->
+  <h2 class="text-2xl font-bold mb-4">Places List</h2>
+
+  <!-- Add Button -->
+  <button id="addButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Add
+    Place</button>
+
+  <!-- Add Place Dialog -->
+  <div id="addDialog" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white p-8 rounded shadow-lg max-w-md">
+      <!-- Add Place Form -->
+
+      <form action="/v1/places/create" method="POST" enctype="multipart/form-data" class="max-w-md ">
+        <div class="mb-4">
+          <label for="title" class="block font-semibold text-gray-700">Title:</label>
+          <input type="text" id="title" name="title" required class="mt-1 p-2 w-full border rounded-lg">
+        </div>
+
+        <div class="mb-4">
+          <label for="description" class="block font-semibold text-gray-700">Description:</label>
+          <textarea id="description" name="description" required class="mt-1 p-2 w-full border rounded-lg"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="mb-4">
+            <label for="location" class="block font-semibold text-gray-700">Location:</label>
+            <input type="text" id="location" name="location" required class="mt-1 p-2 w-full border rounded-lg">
+          </div>
+
+          <div class="mb-4">
+            <label for="wardno" class="block font-semibold text-gray-700">Ward no:</label>
+            <input type="text" id="wardno" name="wardno" required class="mt-1 p-2 w-full border rounded-lg">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="mb-4">
+            <label for="latitude" class="block font-semibold text-gray-700">Latitude:</label>
+            <input type="text" id="latitude" name="latitude" required class="mt-1 p-2 w-full border rounded-lg">
+          </div>
+
+          <div class="mb-4">
+            <label for="longitude" class="block font-semibold text-gray-700">Longitude:</label>
+            <input type="text" id="longitude" name="longitude" required class="mt-1 p-2 w-full border rounded-lg">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="category" class="block font-semibold text-gray-700">Category:</label>
+          <input type="text" id="category" name="category" required class="mt-1 p-2 w-full border rounded-lg">
+        </div>
+
+        <div class="mb-4">
+          <label for="images" class="block font-semibold text-gray-700">Images:</label>
+          <input type="file" id="images" name="images" multiple required class="mt-1">
+        </div>
+        <div class="flex gap-x-1 justify-end">
+          <div class="flex justify-end">
+            <button type="submit"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">save</button>
+          </div>
+          <div class="flex justify-end">
+            <button type="button" id="cancle"
+              class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Places List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 ">
+    <table class="w-70 min-w-full rounded-md bg-white border border-gray-300 overflow-y-auto"
+      aria-describedby="table-data">
+      <thead class="bg-blue-200">
+        <tr>
+          <th class="border p-4">S.NO</th>
+          <th class="border p-4">Title</th>
+          <th class="border p-4">slug-name</th>
+          <th class="border p-4">category</th>
+          <th class="border p-4">ward no</th>
+          <th class="border p-4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach((place, index)=> { %>
+          <tr>
+            <td class="border p-4">
+              <%= index + 1 %>
+            </td>
+
+            <td class="border p-4">
+              <%= place.title %>
+            </td>
+            <td class="border p-4">
+              <%= place.slug_name %>
+            </td>
+            <td class="border p-4">
+              <%= place.category %>
+            </td>
+            <td class="border p-4">
+              <%= place.wardno %>
+            </td>
+            <td class="border p-4 flex gap-x-3 justify-end">
+              <form action="/places/view-details" method="GET">
+                <input type="hidden" name="id" value="<%= place._id %>">
+                <button type="submit"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">see</button>
+              </form>
+
+              <form action="/update" method="post">
+                <input type="hidden" name="placeId" value="<%= place._id %>">
+                <button type="submit"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Update</button>
+              </form>
+              <form action="http://localhost:6700/v1/places/delete" method="post">
+                <input type="hidden" name="id" value="<%= place._id %>">
+                <button type="submit"
+                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="mt-3">
+    <% if (messages.success) { %>
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">
+          <%= messages.success %>
+        </span>
+      </div>
+      <% } %>
+
+        <% if (messages.error) { %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">
+              <%= messages.error %>
+            </span>
+          </div>
+          <% } %>
+
+  </div>
+
+
+</div>

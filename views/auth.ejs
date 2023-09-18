@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded shadow-lg max-w-md w-full">
+        <h2 class="text-2xl mb-4 font-bold text-center">Login</h2>
+        <form action="/v1/auth/admin" method="post">
+            <div class="mb-4">
+                <label for="username" class="block mb-2 text-sm font-bold text-gray-700">Email</label>
+                <input type="email" id="email" name="email"
+                    class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                    required>
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block mb-2 text-sm font-bold text-gray-700">Password</label>
+                <input type="password" id="password" name="password"
+                    class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                    required>
+            </div>
+
+            <% if (req.query.error==='credentialsError' ) { %>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 mb-3 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Incorrect password!</strong>
+                    <span class="block sm:inline"> Please try again.</span>
+                </div>
+                <% } else if (req.query.error==='blankFields' ) { %>
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-3 rounded relative"
+                        role="alert">
+                        <strong class="font-bold">Fields are required!</strong>
+                        <span class="block sm:inline"> Please fill in all the required fields.</span>
+                    </div>
+                    <% } %>
+
+                        <div class="flex justify-center">
+                            <button type="submit"
+                                class="px-5 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none">Login</button>
+                        </div>
+        </form>
+        <div class="mt-3">
+            <% if (messages.success) { %>
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+                    <strong class="font-bold">Success!</strong>
+                    <span class="block sm:inline">
+                        <%= messages.success %>
+                    </span>
+                </div>
+                <% } %>
+
+                    <% if (messages.error) { %>
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong class="font-bold">Error!</strong>
+                            <span class="block sm:inline">
+                                <%= messages.error %>
+                            </span>
+                        </div>
+                        <% } %>
+
+        </div>
+    </div>
+</body>
+
+</html>

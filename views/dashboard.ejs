@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="/js/script.js"></script>
+
+</head>
+
+<body class="flex">
+  <%- include('sidebar') %>
+    <div class="flex-1">
+      <%- include('header') %>
+        <div class="workspace-area">
+
+          <%- include('dashboardItem') %>
+
+        </div>
+    </div>
+    <script>
+      //clock script
+      function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        document.getElementById("clock").textContent = timeString;
+      }
+
+      // Update the clock every second
+      setInterval(updateClock, 1000);
+
+      // Initial update
+      updateClock();
+    </script>
+    <script>
+
+      //calander script
+      // Initial render
+      const currentDate = new Date();
+      generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+      function generateCalendar(year, month) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        const calendarElement = document.getElementById("calendar");
+        const currentMonthElement = document.getElementById("current-month");
+        const today = new Date();
+
+        // Clear previous content
+        calendarElement.innerHTML = "";
+
+        // Set current month
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        currentMonthElement.innerText = `${months[month]} ${year}`;
+
+        // Create day headers
+        const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        dayHeaders.forEach((header) => {
+          const headerElement = document.createElement("div");
+          headerElement.classList.add("day-header");
+          headerElement.innerText = header;
+          calendarElement.appendChild(headerElement);
+        });
+
+        // Create calendar days
+        for (let i = 0; i < firstDay; i++) {
+          const emptyCell = document.createElement("div");
+          emptyCell.classList.add("day-cell", "text-gray-300");
+          calendarElement.appendChild(emptyCell);
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+          const dayCell = document.createElement("div");
+          dayCell.classList.add("day-cell");
+          dayCell.innerText = i;
+
+          if (
+            i === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+          ) {
+            dayCell.classList.add("today");
+          }
+
+          calendarElement.appendChild(dayCell);
+        }
+      }
+
+      function prevMonth() {
+        const currentMonthElement = document.getElementById("current-month");
+        const [month, year] = currentMonthElement.innerText.split(" ");
+        generateCalendar(
+          parseInt(year),
+          new Date(Date.parse(month + " 1, " + year) - 1).getMonth()
+        );
+      }
+
+      function nextMonth() {
+        const currentMonthElement = document.getElementById("current-month");
+        const [month, year] = currentMonthElement.innerText.split(" ");
+        generateCalendar(
+          parseInt(year),
+          new Date(
+            Date.parse(month + " 1, " + year) + 31 * 24 * 60 * 60 * 1000
+          ).getMonth()
+        );
+      }
+    </script>
+</body>
+
+</html>

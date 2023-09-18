@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor Log</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td.text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Monitor Log</h1>
+  <table>
+    <tr>
+      <th>IP Address</th>
+      <th>Total Requests</th>
+      <th>Request Details</th>
+    </tr>
+    <% Object.keys(monitorLog).forEach((ip) => { %>
+      <tr>
+        <td><%= ip %></td>
+        <td class="text-center"><%= monitorLog[ip].requests %></td>
+        <td>
+          <ul>
+            <% Object.keys(monitorLog[ip].endpoints).forEach((endpoint) => { %>
+              <li><%= endpoint %>: <%= monitorLog[ip].endpoints[endpoint] %> times</li>
+            <% }) %>
+          </ul>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
+

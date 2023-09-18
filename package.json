@@ -1,0 +1,42 @@
+{
+  "name": "extraction-two",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "@azure-rest/ai-translation-text": "^1.0.0-beta.1",
+    "@emailjs/nodejs": "^2.2.0",
+    "@prisma/client": "^4.16.0",
+    "archiver": "^5.3.1",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express-flash": "^0.0.2",
+    "express-rate-limit": "^6.7.0",
+    "express-session": "^1.17.3",
+    "file-type": "^18.5.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "memory-cache": "^0.2.0",
+    "mime": "^3.0.0",
+    "mongoose": "^7.4.0",
+    "multer": "^1.4.5-lts.1",
+    "uninstall": "^0.0.0"
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body class="flex">
+    <%- include('sidebar') %>
+        <div class="flex-1">
+            <%- include('header') %>
+                <div class="workspace-area ">
+                    <%- include('placedashboard')%>
+
+                </div>
+
+        </div>
+        <script src="/js/clock.js"></script>
+        <script>
+            // Function to open the add dialog
+            document.getElementById("addButton").addEventListener("click", function () {
+                document.getElementById("addDialog").classList.remove("hidden");
+            });
+            document.getElementById("cancle").addEventListener("click", function () {
+                document.getElementById("addDialog").classList.add("hidden");
+            });
+        </script>
+</body>
+
+</html>
