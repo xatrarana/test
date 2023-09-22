@@ -88,10 +88,7 @@ const userLogin = async (req, res) => {
         .status(403)
         .json({ success: false, message: "No user found with this email" });
     }
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      existingUser.password
-    );
+    const isPasswordValid = bcrypt.compare(password, existingUser.password);
 
     if (!isPasswordValid) {
       return res
@@ -129,13 +126,14 @@ const dashboardLogin = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email: sanitizedEmail });
 
+    if (!existingUser.isAdmin) {
+      return res.status(403).redirect("/admin?error=credentialsError");
+    }
+
     if (!existingUser) {
       return res.redirect("/admin?error=credentialsError");
     }
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      existingUser.password
-    );
+    const isPasswordValid = bcrypt.compare(password, existingUser.password);
 
     if (!isPasswordValid) {
       return res.redirect("/admin?error=credentialsError");
