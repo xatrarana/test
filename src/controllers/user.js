@@ -125,14 +125,13 @@ const dashboardLogin = async (req, res) => {
 
   try {
     const existingUser = await User.findOne({ email: sanitizedEmail });
-
+    if (!existingUser) {
+      return res.redirect("/admin?error=credentialsError");
+    }
     if (!existingUser.isAdmin) {
       return res.status(403).redirect("/admin?error=credentialsError");
     }
 
-    if (!existingUser) {
-      return res.redirect("/admin?error=credentialsError");
-    }
     const isPasswordValid = bcrypt.compare(password, existingUser.password);
 
     if (!isPasswordValid) {
