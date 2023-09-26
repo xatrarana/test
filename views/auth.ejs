@@ -36,12 +36,19 @@
                         <strong class="font-bold">Fields are required!</strong>
                         <span class="block sm:inline"> Please fill in all the required fields.</span>
                     </div>
-                    <% } %>
-
-                        <div class="flex justify-center">
-                            <button type="submit"
-                                class="px-5 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none">Login</button>
+                    <% } else if (req.query.error==='unauthorized' ) { %>
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-3 rounded relative"
+                            role="alert">
+                            <strong class="font-bold">Unauthorized!</strong>
+                            <span class="block sm:inline"> Unauthorized.</span>
                         </div>
+                        <% } %>
+
+
+                            <div class="flex justify-center">
+                                <button type="submit"
+                                    class="px-5 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none">Login</button>
+                            </div>
         </form>
         <div class="mt-3">
             <% if (messages.success) { %>

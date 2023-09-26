@@ -17,3 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebarOpen = !sidebarOpen;
   });
 });
+
+const userName = document.querySelector(".user-name").textContent;
+console.log(userName);
+const initial = userName.charAt(0).toUpperCase(); // Get the first character and capitalize it
+
+const initialElement = document.querySelector(".initial");
+initialElement.textContent = initial;

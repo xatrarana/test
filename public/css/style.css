@@ -1,21 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 body {
   font-family: "Arial", sans-serif;
   padding: 0;
 }
-.custom-sidebar-width {
-  width: 15%;
+
+@media (min-width: 1024px) {
+  .lg\:custom-sidebar-width {
+    width: 15%;
+  }
+}
+@media (min-width: 768px) {
+  .md\:custom-sidebar-width {
+    width: 15%;
+  }
 }
 .group:hover .text-gray-300 {
   color: white;
 }
 #clock {
   font-size: 3rem;
-  letter-spacing: -0.05em;
   font-weight: 700;
   animation: fadeIn ease-in-out 1s;
 }
@@ -30,6 +39,7 @@ body {
     transform: translateY(0);
   }
 }
+
 .day-cell {
   width: 2rem;
   height: 2rem;
@@ -45,4 +55,30 @@ body {
   background-color: rgb(32, 76, 158);
   border-radius: 50%;
   color: white;
+}
+
+.user-photo {
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.initial {
+  color: #fff;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.message {
+  animation: fadeOut 2s forwards;
 }

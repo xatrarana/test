@@ -57,7 +57,7 @@ const createUser = async (req, res) => {
       name: createdUser.name,
       email: createdUser.email,
     };
-    console.log(data);
+    console.log(data + "jhkjh");
     return res.status(200).json({
       success: true,
       message: "User created successfully.",
@@ -122,14 +122,14 @@ const dashboardLogin = async (req, res) => {
   }
   const { email, password } = req.body;
   const sanitizedEmail = await sanitizeEmail(email);
-
   try {
     const existingUser = await User.findOne({ email: sanitizedEmail });
+    console.log(existingUser);
     if (!existingUser) {
       return res.redirect("/admin?error=credentialsError");
     }
     if (!existingUser.isAdmin) {
-      return res.status(403).redirect("/admin?error=credentialsError");
+      return res.status(403).redirect("/admin?error=unauthorized");
     }
 
     const isPasswordValid = bcrypt.compare(password, existingUser.password);
@@ -140,7 +140,7 @@ const dashboardLogin = async (req, res) => {
     if (!existingUser.token) {
       const token = generateToken(existingUser);
       existingUser.token = token;
-      existingUser.save();
+      await existingUser.save();
     }
     res.cookie("AUTH-TOKEN", existingUser.token);
     return res.redirect("/dashboard");

@@ -53,6 +53,7 @@ const { getAllPlaces } = require("./src/controllers/place");
 const Place = require("./src/model/place");
 const { isAuthenticated, isLoggedIn } = require("./src/helpers");
 const User = require("./src/model/user");
+const { decodeToken } = require("./src/middlewares/generateToken");
 ///view
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -108,27 +109,31 @@ app.get("/logout", (req, res) => {
 app.get("/dashboard", isAuthenticated, async (req, res) => {
   const placeCount = await Place.find().countDocuments();
   const userCount = await User.find().countDocuments();
+  const sessionToken = req.cookies["AUTH-TOKEN"];
+  const user = decodeToken(sessionToken);
   res.render("dashboard", {
     placeCount: placeCount,
     userCount: userCount,
     hotelCount: 12,
+    user: user,
   });
 });
 
 app.get("/places", isAuthenticated, async (req, res) => {
+  const sessionToken = req.cookies["AUTH-TOKEN"];
+  const user = decodeToken(sessionToken);
   const places = await Place.find();
-  res.render("place", { data: places, messages: req.flash() });
+  res.render("place", { data: places, messages: req.flash(), user: user });
 });
 
-app.get("/users", isAuthenticated, (req, res) => {
-  res.render("user", { body: "Users Content" });
-});
 app.get("/places/view-details", async (req, res) => {
+  const sessionToken = req.cookies["AUTH-TOKEN"];
+  const user = decodeToken(sessionToken);
   const placeId = req.query.id;
   console.log(placeId);
   const place = await Place.findById(placeId);
 
-  res.render("details", { data: place });
+  res.render("details", { data: place, user: user });
   // res.json(place).end();
 });
 

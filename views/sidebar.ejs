@@ -1,7 +1,8 @@
-<div class="bg-gray-800 custom-sidebar-width h-screen p-4" id="sidebar">
+<div class="bg-gray-800 fixed w-screen bottom-0 md:static lg:static flex items-center md:block lg:block  h-14 md:w-1/5 lg:w-1/6 md:h-screen z-50 md:z-0 lg:z-0 lg:h-screen md:p-4"
+    id="sidebar">
 
     <div class="flex justify-end  items-center my-2 ">
-        <div class="bg-blue-100 rounded-full h-10 w-10 flex items-center justify-center">
+        <div class="hidden bg-blue-100 rounded-full h-10 w-10 md:flex lg:flex items-center justify-center">
             <button id="toggleSidebar">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
                     <path
@@ -21,50 +22,60 @@
         }
     </style>
 
-    <div class="container_buttons my-5 flex flex-col gap-y-10 ">
-        <div class="p-2 rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
-            <a href="/dashboard" class="flex items-center justify-start ">
-                <div class="flex items-center gap-x-5 h-10">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div
+        class="container_button md:my-5 lg:my-5 flex md:flex-col w-full  md:p-0 lg:p-0 items-center justify-between md:items-start lg:items-start lg:justify-start md:justify-start px-5 md:px-0 lg:px-0 lg:flex-col md:gap-y-10 lg:gap-y-10  ">
+        <div
+            class="md:p-2 lg:p-2 md:w-full lg:w-full  rounded md:my-1 lg:my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
+            <a href="/dashboard" class="flex ">
+                <div class="flex  flex-col md:flex-row lg:flex-row items-center justify-center gap-x-5 md:h-10 lg:h-10">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M20.83 8.01002L14.28 2.77002C13 1.75002 11 1.74002 9.72996 2.76002L3.17996 8.01002C2.23996 8.76002 1.66996 10.26 1.86996 11.44L3.12996 18.98C3.41996 20.67 4.98996 22 6.69996 22H17.3C18.99 22 20.59 20.64 20.88 18.97L22.14 11.43C22.32 10.26 21.75 8.76002 20.83 8.01002ZM12.75 18C12.75 18.41 12.41 18.75 12 18.75C11.59 18.75 11.25 18.41 11.25 18V15C11.25 14.59 11.59 14.25 12 14.25C12.41 14.25 12.75 14.59 12.75 15V18Z"
                             fill="#f1f5f9" />
                     </svg>
 
-                    <span id="title" class="title  px-4 text-gray-300  font-medium">Dashboard</span>
+                    <span id="title"
+                        class="title hidden md:flex lg:flex px-4 text-gray-300  font-medium">Dashboard</span>
                 </div>
             </a>
         </div>
-        <div class="p-2 rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
-            <a href="/places" class="flex items-center justify-start ">
-                <div class="flex items-center gap-x-5 h-10">
+        <div
+            class="md:p-2 lg:p-2  md:w-full lg:w-fullrounded md:my-1 lg:my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
+            <a href="/places" class="flex    ">
+                <div
+                    class="flex  flex-col md:flex-row lg:flex-row  items-center  justify-center  gap-x-5 md:h-10 lg:h-10">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M20.6211 8.45C19.5711 3.83 15.5411 1.75 12.0011 1.75C12.0011 1.75 12.0011 1.75 11.9911 1.75C8.46107 1.75 4.42107 3.82 3.37107 8.44C2.20107 13.6 5.36107 17.97 8.22107 20.72C9.28107 21.74 10.6411 22.25 12.0011 22.25C13.3611 22.25 14.7211 21.74 15.7711 20.72C18.6311 17.97 21.7911 13.61 20.6211 8.45ZM12.0011 13.46C10.2611 13.46 8.85107 12.05 8.85107 10.31C8.85107 8.57 10.2611 7.16 12.0011 7.16C13.7411 7.16 15.1511 8.57 15.1511 10.31C15.1511 12.05 13.7411 13.46 12.0011 13.46Z"
                             fill="#f1f5f9" />
                     </svg>
 
-                    <span id="title" class="title  px-4 text-gray-300  font-medium">Places</span>
+                    <span id="places"
+                        class="title hidden md:flex lg:flex  px-4 text-gray-300  font-medium">Places</span>
                 </div>
             </a>
         </div>
 
 
-        <div class="p-2  rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
+        <div
+            class="md:p-2 lg:p-2 md:w-full lg:w-full rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
             <a href="/setting" class="flex items-center justify-start">
-                <div class="flex items-center gap-x-5 h-10">
+                <div
+                    class="flex  flex-col md:flex-row lg:flex-row justify-center  items-center gap-x-5 md:h-10 lg:h-10">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M18.9401 5.42141L13.7701 2.43141C12.7801 1.86141 11.2301 1.86141 10.2401 2.43141L5.02008 5.44141C2.95008 6.84141 2.83008 7.05141 2.83008 9.28141V14.7114C2.83008 16.9414 2.95008 17.1614 5.06008 18.5814L10.2301 21.5714C10.7301 21.8614 11.3701 22.0014 12.0001 22.0014C12.6301 22.0014 13.2701 21.8614 13.7601 21.5714L18.9801 18.5614C21.0501 17.1614 21.1701 16.9514 21.1701 14.7214V9.28141C21.1701 7.05141 21.0501 6.84141 18.9401 5.42141ZM12.0001 15.2514C10.2101 15.2514 8.75008 13.7914 8.75008 12.0014C8.75008 10.2114 10.2101 8.75141 12.0001 8.75141C13.7901 8.75141 15.2501 10.2114 15.2501 12.0014C15.2501 13.7914 13.7901 15.2514 12.0001 15.2514Z"
                             fill="#f1f5f9" />
                     </svg>
-                    <span class="title  px-4 text-gray-300  font-medium">Settings</span>
+                    <span class="title hidden md:flex lg:flex px-4 text-gray-300  font-medium">Settings</span>
                 </div>
             </a>
         </div>
-        <div class="p-2 rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
+        <div
+            class="md:p-2 lg:p-2 md:w-full lg:w-full rounded my-1 group hover:bg-blue-500 hover:text-white transition  duration-75 ease-in-out">
             <a href="/logout" class="flex items-center justify-start">
-                <div class="flex items-center gap-x-5 h-10">
+                <div
+                    class="flex  flex-col md:flex-row lg:flex-row  items-center justify-center gap-x-5 md:h-10 lg:h-10">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M7.87828 12.07C7.87828 11.66 8.21828 11.32 8.62828 11.32H14.1083V2.86C14.0983 2.38 13.7183 2 13.2383 2C7.34828 2 3.23828 6.11 3.23828 12C3.23828 17.89 7.34828 22 13.2383 22C13.7083 22 14.0983 21.62 14.0983 21.14V12.81H8.62828C8.20828 12.82 7.87828 12.48 7.87828 12.07Z"
@@ -74,7 +85,7 @@
                             fill="#f1f5f9" />
                     </svg>
 
-                    <span class=" title px-4 text-gray-300 font-medium">Sign out</span>
+                    <span class=" hidden md:flex lg:flex title px-4 text-gray-300 font-medium">Sign out</span>
                 </div>
             </a>
         </div>

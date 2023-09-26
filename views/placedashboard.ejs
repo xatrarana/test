@@ -1,4 +1,4 @@
-<div class="p-3">
+<div class="p-3 w-full ">
   <!-- Title -->
   <h2 class="text-2xl font-bold mb-4">Places List</h2>
 
@@ -71,53 +71,79 @@
 
   <!-- Places List -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 ">
-    <table class="w-70 min-w-full rounded-md bg-white border border-gray-300 overflow-y-auto"
+    <table class="w-full md:min-w-full lg:min-w-full rounded-md  text-left overflow-y-auto"
       aria-describedby="table-data">
-      <thead class="bg-blue-200">
-        <tr>
-          <th class="border p-4">S.NO</th>
-          <th class="border p-4">Title</th>
-          <th class="border p-4">slug-name</th>
-          <th class="border p-4">category</th>
-          <th class="border p-4">ward no</th>
-          <th class="border p-4"></th>
+      <thead class="border-b text-sm text-gray-600 hover:bg-gray-100">
+        <tr class="">
+          <th class="p-2">SN</th>
+          <th class="p-2">Title</th>
+          <th class="p-2">Slug-name</th>
+          <th class="p-2">Category</th>
+          <th class="p-2">Ward no</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tex-md font-medium ">
         <% data.forEach((place, index)=> { %>
-          <tr>
-            <td class="border p-4">
+          <tr class="hover:bg-gray-100">
+            <td class="border-b p-2 ">
               <%= index + 1 %>
             </td>
 
-            <td class="border p-4">
+            <td class="border-b p-2">
               <%= place.title %>
             </td>
-            <td class="border p-4">
+            <td class="border-b p-2">
               <%= place.slug_name %>
             </td>
-            <td class="border p-4">
+            <td class="border-b p-2">
               <%= place.category %>
             </td>
-            <td class="border p-4">
+            <td class="border-b p-2">
               <%= place.wardno %>
             </td>
-            <td class="border p-4 flex gap-x-3 justify-end">
+            <td
+              class="border-b hidden  p-2 md:flex lg:flex md:gap-x-3 lg:gap-x-3 items-center justify-start md:justify-end lg:justify-end">
               <form action="/places/view-details" method="GET">
                 <input type="hidden" name="id" value="<%= place._id %>">
-                <button type="submit"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">see</button>
+                <button type="submit" class="  text-white font-bold py-2 px-4 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M21.25 9.14969C18.94 5.51969 15.56 3.42969 12 3.42969C10.22 3.42969 8.49 3.94969 6.91 4.91969C5.33 5.89969 3.91 7.32969 2.75 9.14969C1.75 10.7197 1.75 13.2697 2.75 14.8397C5.06 18.4797 8.44 20.5597 12 20.5597C13.78 20.5597 15.51 20.0397 17.09 19.0697C18.67 18.0897 20.09 16.6597 21.25 14.8397C22.25 13.2797 22.25 10.7197 21.25 9.14969ZM12 16.0397C9.76 16.0397 7.96 14.2297 7.96 11.9997C7.96 9.76969 9.76 7.95969 12 7.95969C14.24 7.95969 16.04 9.76969 16.04 11.9997C16.04 14.2297 14.24 16.0397 12 16.0397Z"
+                      fill="#292D32" />
+                    <path
+                      d="M11.9984 9.14062C10.4284 9.14062 9.14844 10.4206 9.14844 12.0006C9.14844 13.5706 10.4284 14.8506 11.9984 14.8506C13.5684 14.8506 14.8584 13.5706 14.8584 12.0006C14.8584 10.4306 13.5684 9.14062 11.9984 9.14062Z"
+                      fill="#292D32" />
+                  </svg>
+                </button>
               </form>
 
               <form action="/update" method="post">
                 <input type="hidden" name="placeId" value="<%= place._id %>">
-                <button type="submit"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Update</button>
+                <button type="submit" class=" text-white font-bold py-2 px-4 rounded-full">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M21 22H3C2.59 22 2.25 21.66 2.25 21.25C2.25 20.84 2.59 20.5 3 20.5H21C21.41 20.5 21.75 20.84 21.75 21.25C21.75 21.66 21.41 22 21 22Z"
+                      fill="#292D32" />
+                    <path
+                      d="M19.0206 3.48162C17.0806 1.54162 15.1806 1.49162 13.1906 3.48162L11.9806 4.69162C11.8806 4.79162 11.8406 4.95162 11.8806 5.09162C12.6406 7.74162 14.7606 9.86162 17.4106 10.6216C17.4506 10.6316 17.4906 10.6416 17.5306 10.6416C17.6406 10.6416 17.7406 10.6016 17.8206 10.5216L19.0206 9.31162C20.0106 8.33162 20.4906 7.38162 20.4906 6.42162C20.5006 5.43162 20.0206 4.47162 19.0206 3.48162Z"
+                      fill="#292D32" />
+                    <path
+                      d="M15.6103 11.5308C15.3203 11.3908 15.0403 11.2508 14.7703 11.0908C14.5503 10.9608 14.3403 10.8208 14.1303 10.6708C13.9603 10.5608 13.7603 10.4008 13.5703 10.2408C13.5503 10.2308 13.4803 10.1708 13.4003 10.0908C13.0703 9.81078 12.7003 9.45078 12.3703 9.05078C12.3403 9.03078 12.2903 8.96078 12.2203 8.87078C12.1203 8.75078 11.9503 8.55078 11.8003 8.32078C11.6803 8.17078 11.5403 7.95078 11.4103 7.73078C11.2503 7.46078 11.1103 7.19078 10.9703 6.91078C10.9491 6.86539 10.9286 6.82022 10.9088 6.77532C10.7612 6.442 10.3265 6.34455 10.0688 6.60231L4.34032 12.3308C4.21032 12.4608 4.09032 12.7108 4.06032 12.8808L3.52032 16.7108C3.42032 17.3908 3.61032 18.0308 4.03032 18.4608C4.39032 18.8108 4.89032 19.0008 5.43032 19.0008C5.55032 19.0008 5.67032 18.9908 5.79032 18.9708L9.63032 18.4308C9.81032 18.4008 10.0603 18.2808 10.1803 18.1508L15.9016 12.4295C16.1612 12.1699 16.0633 11.7245 15.7257 11.5804C15.6877 11.5642 15.6492 11.5476 15.6103 11.5308Z"
+                      fill="#292D32" />
+                  </svg>
+
+                </button>
               </form>
               <form action="http://localhost:6700/v1/places/delete" method="post">
                 <input type="hidden" name="id" value="<%= place._id %>">
-                <button type="submit"
-                  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</button>
+                <button type="submit" class=" text-white font-bold py-2 px-4 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24px" height="24px">
+                    <path
+                      d="M 28 11 C 26.895 11 26 11.895 26 13 L 26 14 L 13 14 C 11.896 14 11 14.896 11 16 C 11 17.104 11.896 18 13 18 L 14.160156 18 L 16.701172 48.498047 C 16.957172 51.583047 19.585641 54 22.681641 54 L 41.318359 54 C 44.414359 54 47.041828 51.583047 47.298828 48.498047 L 49.839844 18 L 51 18 C 52.104 18 53 17.104 53 16 C 53 14.896 52.104 14 51 14 L 38 14 L 38 13 C 38 11.895 37.105 11 36 11 L 28 11 z" />
+                  </svg>
+
+                </button>
               </form>
             </td>
           </tr>
@@ -130,7 +156,7 @@
 
   <div class="mt-3">
     <% if (messages.success) { %>
-      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+      <div class="message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
         <strong class="font-bold">Success!</strong>
         <span class="block sm:inline">
           <%= messages.success %>
@@ -139,7 +165,7 @@
       <% } %>
 
         <% if (messages.error) { %>
-          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+          <div class="message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
             <strong class="font-bold">Error!</strong>
             <span class="block sm:inline">
               <%= messages.error %>

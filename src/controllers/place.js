@@ -162,7 +162,6 @@ const processFileUploads = async (files) => {
       console.log("sucess false");
     }
     images.push(result._id);
-    console.log("images pushed", images);
   });
 
   await Promise.all(promises);
@@ -210,7 +209,6 @@ const createPlace = async (req, res) => {
 
 const getImageById = async (req, res) => {
   const id = req.params.id;
-  console.log("id", id);
 
   try {
     // Check if the response is in the cache
